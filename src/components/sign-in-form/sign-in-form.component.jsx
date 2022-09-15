@@ -1,7 +1,6 @@
 import { useState, useContext } from "react";
 import { UserContext } from "../../context/user.context";
 import {
-  createUserDocumentFromAuth,
   signInAuthUserWithEmailAndPassword,
   signInWithGooglePopup,
 } from "../../utils/firebase/firebase.utils";
@@ -19,15 +18,12 @@ const SignIn = () => {
   const [formFields, setFormFields] = useState(defaultFormField);
   const { email, password } = formFields;
 
-  const { setCurrentUser } = useContext(UserContext);
-
   const resetForm = () => {
     setFormFields(defaultFormField);
   };
 
   const logGoogleUser = async () => {
-    const { user } = await signInWithGooglePopup();
-    await createUserDocumentFromAuth(user);
+    await signInWithGooglePopup();
   };
 
   const handleSubmit = async (event) => {
@@ -38,7 +34,7 @@ const SignIn = () => {
         email,
         password
       );
-      setCurrentUser(user);
+
       resetForm();
     } catch (error) {
       // auth/user-not-found

@@ -25,8 +25,6 @@ const SignUp = () => {
     setFormFields(defaultFormField);
   };
 
-  const { setCurrentUser } = useContext(UserContext);
-
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (password !== confirmpassword) {
@@ -42,7 +40,6 @@ const SignUp = () => {
         ...user,
         displayName,
       };
-      setCurrentUser(userData);
       console.log(userData);
       const userDocRef = await createUserDocumentFromAuth(userData);
       resetForm();
@@ -62,7 +59,6 @@ const SignUp = () => {
   };
   const signUpGoogleUser = async () => {
     const { user } = await signInWithGooglePopup();
-    const userDocRef = await createUserDocumentFromAuth(user);
   };
   return (
     <div className="sign-up-container">
