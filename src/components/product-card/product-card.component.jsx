@@ -6,6 +6,7 @@ import {
   ProductCardContainer,
   ProductCardFooter,
   ProductCardName,
+  ProductCardImg,
 } from "./product-card.styles";
 
 const ProductCard = ({ product }) => {
@@ -15,7 +16,7 @@ const ProductCard = ({ product }) => {
   const addProductToCart = () => addItemToCart(product);
   return (
     <ProductCardContainer>
-      <img src={imageUrl} alt={name} />
+      <ProductCardImg src={imageUrl} alt={name} />
       <ProductCardFooter>
         <ProductCardName>{name}</ProductCardName>
         <ProductCardPrice className="price">{price}</ProductCardPrice>

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { sizes } from "../directory-item/directory-item.styles";
 
 export const CheckoutItemContainer = styled.div`
   width: 100%;
@@ -8,6 +9,16 @@ export const CheckoutItemContainer = styled.div`
   padding: 15px 0;
   font-size: 20px;
   align-items: center;
+
+  @media (max-width: ${sizes.mobileL}), {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    * {
+      width: 100% !important;
+      text-align: center;
+    }
+  }
 `;
 export const CheckoutImageContainer = styled.div`
   width: 23%;

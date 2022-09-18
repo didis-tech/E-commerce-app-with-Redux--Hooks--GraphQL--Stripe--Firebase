@@ -12,6 +12,7 @@ export const ProductCardContainer = styled.div`
   height: 350px;
   align-items: center;
   position: relative;
+  margin-top: 50px;
 
   button {
     width: 80%;

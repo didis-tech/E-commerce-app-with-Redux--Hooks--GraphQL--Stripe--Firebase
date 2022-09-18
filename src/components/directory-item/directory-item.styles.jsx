@@ -1,6 +1,25 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
+export const sizes = {
+  mobileS: "320px",
+  mobileM: "375px",
+  mobileL: "425px",
+  tablet: "768px",
+  laptop: "1024px",
+  laptopL: "1440px",
+  desktop: "2560px",
+};
+export const devices = {
+  mobileS: `(min-width: ${sizes.mobileS})`,
+  mobileM: `(min-width: ${sizes.mobileM})`,
+  mobileL: `(min-width: ${sizes.mobileL})`,
+  tablet: `(min-width: ${sizes.tablet})`,
+  laptop: `(min-width: ${sizes.laptop})`,
+  laptopL: `(min-width: ${sizes.laptopL})`,
+  desktop: `(min-width: ${sizes.desktop})`,
+};
+
 export const DirectoryItemBackgroundImage = styled.div`
   width: 100%;
   height: 100%;
@@ -33,6 +52,15 @@ export const DirectoryItemContainer = styled.div`
   margin: 0 7.5px 15px;
   overflow: hidden;
 
+  @media (max-width: ${sizes.laptop}), {
+    min-width: 30%;
+  }
+  @media (max-width: ${sizes.tablet}), {
+    min-width: 60%;
+  }
+  @media (max-width: ${sizes.mobileL}), {
+    min-width: 100%;
+  }
   &:hover {
     cursor: pointer;
   }
