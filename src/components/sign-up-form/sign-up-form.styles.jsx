@@ -9,3 +9,7 @@ export const SignUpContainer = styled.div`
 export const SignUpH2 = styled.h2`
   margin: 10px 0;
 `;
+export const SignUpButtonsContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;

@@ -7,7 +7,11 @@ import {
 } from "../../utils/firebase/firebase.utils";
 import Button, { BUTTON_TYPE_CLASSES } from "../button/button.component";
 import FormInput from "../form-input/form-input.component";
-import { SignUpContainer, SignUpH2 } from "./sign-up-form.styles";
+import {
+  SignUpButtonsContainer,
+  SignUpContainer,
+  SignUpH2,
+} from "./sign-up-form.styles";
 
 const defaultFormField = {
   displayName: "",
@@ -103,7 +107,7 @@ const SignUp = () => {
           required
         />
         {/* <Button/> */}
-        <div className="buttons-container">
+        <SignUpButtonsContainer>
           <Button type="submit">Sign Up</Button>
 
           <Button
@@ -113,7 +117,7 @@ const SignUp = () => {
           >
             Google SignUp
           </Button>
-        </div>
+        </SignUpButtonsContainer>
       </form>
     </SignUpContainer>
   );
