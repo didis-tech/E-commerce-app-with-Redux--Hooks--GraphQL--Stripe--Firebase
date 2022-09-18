@@ -5,10 +5,9 @@ import {
   createUserDocumentFromAuth,
   signInWithGooglePopup,
 } from "../../utils/firebase/firebase.utils";
-import Button from "../button/button.component";
+import Button, { BUTTON_TYPE_CLASSES } from "../button/button.component";
 import FormInput from "../form-input/form-input.component";
-
-import "./sign-up-form.styles.scss";
+import { SignUpContainer, SignUpH2 } from "./sign-up-form.styles";
 
 const defaultFormField = {
   displayName: "",
@@ -61,8 +60,8 @@ const SignUp = () => {
     const { user } = await signInWithGooglePopup();
   };
   return (
-    <div className="sign-up-container">
-      <h2>Don't have an account</h2>
+    <SignUpContainer>
+      <SignUpH2>Don't have an account</SignUpH2>
       <span>Sign up with email and password</span>
       <form onSubmit={handleSubmit}>
         <FormInput
@@ -87,6 +86,7 @@ const SignUp = () => {
           label="Password"
           type="password"
           name="password"
+          autoComplete="false"
           id="password"
           onChange={handleChange}
           value={password}
@@ -95,6 +95,7 @@ const SignUp = () => {
         <FormInput
           label="Confirm Password"
           type="password"
+          autoComplete="false"
           id="confirm_password"
           name="confirmpassword"
           onChange={handleChange}
@@ -105,12 +106,16 @@ const SignUp = () => {
         <div className="buttons-container">
           <Button type="submit">Sign Up</Button>
 
-          <Button type="button" onClick={signUpGoogleUser} buttonType="google">
+          <Button
+            type="button"
+            onClick={signUpGoogleUser}
+            buttonType={BUTTON_TYPE_CLASSES.google}
+          >
             Google SignUp
           </Button>
         </div>
       </form>
-    </div>
+    </SignUpContainer>
   );
 };
 
