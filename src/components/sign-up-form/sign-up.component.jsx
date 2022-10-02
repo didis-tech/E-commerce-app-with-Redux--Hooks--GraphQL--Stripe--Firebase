@@ -1,11 +1,8 @@
-import { useContext, useState } from "react";
-import { UserContext } from "../../context/user.context";
-import {
-  createAuthUserWithEmailAndPassword,
-  createUserDocumentFromAuth,
-  signInWithGooglePopup,
-} from "../../utils/firebase/firebase.utils";
-import Button, { BUTTON_TYPE_CLASSES } from "../button/button.component";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { userSignUpStart } from "../../store/user/user.action";
+
+import Button from "../button/button.component";
 import FormInput from "../form-input/form-input.component";
 import {
   SignUpButtonsContainer,
@@ -21,6 +18,7 @@ const defaultFormField = {
 };
 
 const SignUp = () => {
+  const dispatch = useDispatch();
   const [formFields, setFormFields] = useState(defaultFormField);
   const { displayName, email, password, confirmpassword } = formFields;
 
@@ -35,16 +33,12 @@ const SignUp = () => {
       return;
     }
     try {
-      const { user } = await createAuthUserWithEmailAndPassword(
-        email,
-        password
-      );
       const userData = {
-        ...user,
+        email,
+        password,
         displayName,
       };
-      console.log(userData);
-      const userDocRef = await createUserDocumentFromAuth(userData);
+      dispatch(userSignUpStart(userData));
       resetForm();
     } catch (error) {
       if (error.code === "auth/email-already-in-use") {
@@ -60,9 +54,9 @@ const SignUp = () => {
 
     setFormFields({ ...formFields, [name]: value });
   };
-  const signUpGoogleUser = async () => {
-    const { user } = await signInWithGooglePopup();
-  };
+  // const signUpGoogleUser = async () => {
+  //   await signInWithGooglePopup();
+  // };
   return (
     <SignUpContainer>
       <SignUpH2>Don't have an account</SignUpH2>
@@ -110,13 +104,13 @@ const SignUp = () => {
         <SignUpButtonsContainer>
           <Button type="submit">Sign Up</Button>
 
-          <Button
+          {/* <Button
             type="button"
             onClick={signUpGoogleUser}
             buttonType={BUTTON_TYPE_CLASSES.google}
           >
             Google SignUp
-          </Button>
+          </Button> */}
         </SignUpButtonsContainer>
       </form>
     </SignUpContainer>

@@ -32,7 +32,7 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const firebaseApp = initializeApp(firebaseConfig);
+export const firebaseApp = initializeApp(firebaseConfig);
 export const auth = getAuth();
 
 //-------------- using google sign in-------------
@@ -62,7 +62,7 @@ export const addCollectionAndDocuments = async (
     batch.set(docRef, object);
   });
   await batch.commit();
-  console.log("done");
+  // console.log("done");
 };
 
 export const getCategoriesAndDocuments = async () => {
@@ -70,13 +70,7 @@ export const getCategoriesAndDocuments = async () => {
   const q = query(collectionRef);
 
   const querySnapShot = await getDocs(q);
-  const categoryMap = querySnapShot.docs.reduce((acc, docSnapshot) => {
-    const { title, items } = docSnapshot.data();
-    acc[title.toLowerCase()] = items;
-    return acc;
-  }, {});
-
-  return categoryMap;
+  return querySnapShot.docs.map((docSnapshot) => docSnapshot.data());
 };
 
 export const createUserDocumentFromAuth = async (
@@ -86,10 +80,10 @@ export const createUserDocumentFromAuth = async (
   if (!userAuth) return;
   const userDocRef = doc(db, "users", userAuth.uid);
 
-  console.log(userDocRef);
+  // console.log(userDocRef);
 
   const userSnapshot = await getDoc(userDocRef);
-  console.log(userSnapshot);
+  // console.log(userSnapshot);
 
   //   if user data does not exist
   if (!userSnapshot.exists()) {
@@ -106,7 +100,7 @@ export const createUserDocumentFromAuth = async (
       console.log("error creating the user", error.message);
     }
   }
-  return userDocRef;
+  return userSnapshot;
 };
 
 //-------------- email and password sign in/signup -------------
@@ -126,3 +120,16 @@ export const signOutUser = async () => await signOut(auth);
 
 export const onAuthStateChangedListener = (callback) =>
   onAuthStateChanged(auth, callback);
+
+export const getCurrentUser = () => {
+  return new Promise((resolve, reject) => {
+    const unsubcribe = onAuthStateChanged(
+      auth,
+      (userAuth) => {
+        unsubcribe();
+        resolve(userAuth);
+      },
+      reject
+    );
+  });
+};

@@ -1,10 +1,11 @@
-import { useContext } from "react";
-import { Link, Outlet } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Outlet } from "react-router-dom";
 import logo from "../../assets/img/logo.png";
 import CartDropdown from "../../components/cart-dropdown/cart-dropdown.component";
 import CartIcon from "../../components/cart-icon/cart-icon.component";
-import { CartContext } from "../../context/cart.context";
-import { UserContext } from "../../context/user.context";
+import { selectIsCartOpen } from "../../store/cart/cart.selector";
+import { signOutStart } from "../../store/user/user.action";
+import { selectCurrentUser } from "../../store/user/user.selector";
 import { signOutUser } from "../../utils/firebase/firebase.utils";
 import {
   LogoContainer,
@@ -14,12 +15,11 @@ import {
 } from "./navigation.styles.jsx";
 
 const Navigation = () => {
-  const { currentUser } = useContext(UserContext);
-  const { isCartOpen } = useContext(CartContext);
+  const dispatch = useDispatch();
+  const currentUser = useSelector(selectCurrentUser);
+  const isCartOpen = useSelector(selectIsCartOpen);
 
-  const signOutHandler = async () => {
-    await signOutUser();
-  };
+  const signOutHandler = () => dispatch(signOutStart());
 
   return (
     <>
