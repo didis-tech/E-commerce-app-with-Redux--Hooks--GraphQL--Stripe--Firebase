@@ -84,11 +84,15 @@ export const CartOverlay = styled.div`
   position: absolute;
   width: 100%;
   height: 100%;
-  display: block;
+  display: none;
   background: rgba(0, 0, 0, 0.8);
   backdrop-filter: blur(4px);
   left: 0;
   top: 0;
   bottom: 0;
   right: 0;
+  z-index: 2;
+  @media (max-width: 800px) {
+    display: block;
+  }
 `;

@@ -26,13 +26,17 @@ export const NavOverlay = styled.div`
   position: absolute;
   width: 100%;
   height: 100%;
-  display: block;
+  display: none;
   background: rgba(0, 0, 0, 0.8);
   backdrop-filter: blur(4px);
   left: 0;
   top: 0;
   bottom: 0;
   right: 0;
+  z-index: 2;
+  @media (max-width: 800px) {
+    display: block;
+  }
 `;
 
 type NavLinksProps = {
@@ -57,7 +61,7 @@ export const NavLinks = styled.div<NavLinksProps>`
     top: 0;
     right: -5px;
     justify-content: flex-start;
-    z-index: 2;
+    z-index: 3;
     background: white;
     height: ${({ display }) => `${display === "none" ? "0%" : "100%"}`};
     width: ${({ display }) => `${display === "none" ? "0%" : "200px"}`};
