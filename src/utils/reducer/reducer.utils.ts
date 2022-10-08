@@ -1,7 +1,6 @@
 import { AnyAction } from "redux";
 
-{
-  /*
+/*
     Ac == means action creator
 
 eg: 
@@ -18,7 +17,6 @@ const thoanoid: Hybrid = {
   fly: () => {},
 };
 */
-}
 
 type Matchable<AC extends () => AnyAction> = AC & {
   type: ReturnType<AC>["type"];

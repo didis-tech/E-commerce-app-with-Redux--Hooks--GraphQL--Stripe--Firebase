@@ -7,7 +7,6 @@ import {
   signInAuthUserWithEmailAndPassword,
   signInWithGooglePopup,
   signOutUser,
-  UserData,
 } from "../../utils/firebase/firebase.utils";
 
 import {
