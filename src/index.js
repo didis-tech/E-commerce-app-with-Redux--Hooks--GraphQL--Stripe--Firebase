@@ -5,11 +5,13 @@ import { PersistGate } from "redux-persist/integration/react";
 import { Provider } from "react-redux";
 import { Elements } from "@stripe/react-stripe-js";
 
-import "./index.scss";
+// import "./index.scss";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { store, persistor } from "./store/store";
 import { stripePromise } from "./utils/stripe/stripe.utils";
+
+import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -26,6 +28,11 @@ root.render(
     </Provider>
   </React.StrictMode>
 );
+
+// If you want your app to work offline and load faster, you can change
+// unregister() to register() below. Note this comes with some pitfalls.
+// Learn more about service workers: https://cra.link/PWA
+serviceWorkerRegistration.register();
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

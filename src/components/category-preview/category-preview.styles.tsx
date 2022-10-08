@@ -7,6 +7,11 @@ export const CategoryPreviewContainer = styled.div`
   display: flex;
   flex-direction: column;
   margin-bottom: 30px;
+
+  @media (max-width: 800px), {
+    justify-content: center;
+    align-items: center;
+  }
 `;
 
 export const CategoryPreviewTitle = styled(Link)`

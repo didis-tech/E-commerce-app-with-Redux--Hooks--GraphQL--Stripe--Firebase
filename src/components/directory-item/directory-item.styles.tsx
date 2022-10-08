@@ -30,6 +30,20 @@ export const DirectoryItemBackgroundImage = styled.div<DirectoryItemBackgroundIm
   background-image: ${({ imageUrl }) => `url(${imageUrl})`};
 `;
 
+export const DirectoryItemDetail = styled.div`
+  height: 115px;
+  width: 115px;
+  padding: 5px 5px;
+  margin: 5px 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid black;
+  background-color: rgba(255, 255, 255, 0.45);
+  position: relative;
+  font-size: smaller;
+`;
 export const DirectoryItemBody = styled(Link)`
   height: 100%;
   width: 100%;
@@ -42,6 +56,10 @@ export const DirectoryItemBody = styled(Link)`
   background-color: rgba(255, 255, 255, 0.25);
   // opacity: 0.1;
   position: absolute;
+
+  &:hover ${DirectoryItemDetail} {
+    background-color: rgba(255, 255, 255, 0.85);
+  }
 `;
 
 export const DirectoryItemContainer = styled.div`
@@ -84,10 +102,6 @@ export const DirectoryItemContainer = styled.div`
   }
   &:last-child ${DirectoryItemBody} {
     background-color: rgba(0, 15, 255, 0.25);
-    color: #fff;
-    h2 {
-      color: #fff;
-    }
   }
   h2 {
     font-weight: bold;
@@ -103,16 +117,8 @@ export const DirectoryItemContainer = styled.div`
 
   &:nth-child(4) ${DirectoryItemBody} {
     background-color: rgba(244, 54, 166, 0.25);
-    color: #fff;
-    h2 {
-      color: #fff;
-    }
   }
   &:nth-child(3) ${DirectoryItemBody} {
     background-color: rgba(255, 255, 0, 0.25);
-    color: #000;
-    h2 {
-      color: #000;
-    }
   }
 `;

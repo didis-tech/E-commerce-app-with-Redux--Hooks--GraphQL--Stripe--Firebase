@@ -1,7 +1,9 @@
+import { FC } from "react";
 import {
   DirectoryItemBackgroundImage,
   DirectoryItemBody,
   DirectoryItemContainer,
+  DirectoryItemDetail,
 } from "./directory-item.styles";
 
 type Category = {
@@ -15,7 +17,7 @@ type DirectoryItemProp = {
   category: Category;
 };
 
-const DirectoryItem = ({ category }: DirectoryItemProp) => {
+const DirectoryItem: FC<DirectoryItemProp> = ({ category }) => {
   const { title, id, imageUrl, route } = category;
   return (
     <DirectoryItemContainer key={id}>
@@ -23,8 +25,10 @@ const DirectoryItem = ({ category }: DirectoryItemProp) => {
         imageUrl={imageUrl}
       ></DirectoryItemBackgroundImage>
       <DirectoryItemBody to={`${route}`}>
-        <h2>{title} </h2>
-        <p>Shop Now</p>
+        <DirectoryItemDetail>
+          <h2>{title} </h2>
+          <p>Shop Now</p>
+        </DirectoryItemDetail>
       </DirectoryItemBody>
     </DirectoryItemContainer>
   );

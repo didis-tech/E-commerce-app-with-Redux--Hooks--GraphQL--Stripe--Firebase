@@ -10,7 +10,7 @@ import {
   CheckoutHeader,
   HeaderBlock,
   CheckoutTotal,
-} from "./checkout.styles.jsx";
+} from "./checkout.styles";
 function Checkout() {
   const cartItems = useSelector(selectCartItems);
   const cartTotal = useSelector(selectCartTotal);

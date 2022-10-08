@@ -25,6 +25,20 @@ export const ProductCardContainer = styled.div`
       display: flex;
     }
   }
+
+  @media (max-width: 800px) {
+    button {
+      display: block;
+    }
+    &:hover {
+      img {
+        opacity: unset;
+      }
+      button {
+        opacity: unset;
+      }
+    }
+  }
 `;
 
 export const ProductCardImg = styled.img`

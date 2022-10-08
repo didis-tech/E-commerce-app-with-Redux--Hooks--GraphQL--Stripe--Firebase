@@ -14,6 +14,7 @@ import {
   NavigationContainer,
   NavLink,
   NavLinks,
+  NavOverlay,
 } from "./navigation.styles";
 
 const Navigation = () => {
@@ -70,6 +71,12 @@ const Navigation = () => {
 
           <CartIcon />
         </NavLinks>
+        <NavOverlay
+          style={{
+            display: isNavbarOpen ? "flex" : "none",
+          }}
+          onClick={toggleNavBar}
+        />
         {isCartOpen && <CartDropdown />}
       </NavigationContainer>
       <Outlet />
